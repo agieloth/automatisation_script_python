@@ -15,8 +15,11 @@ def inject_data_to_sheet(df: pd.DataFrame):
         spreadsheet_id = sheet_config['spreadsheet_id']
         sheet_name = sheet_config['sheet_name']
 
+        # Pour charger les credentials depuis l’environnement
+        gc = authorize_from_env()
+
         # Authentification avec le fichier de service (service account)
-        gc = pygsheets.authorize(service_file='credentials/google_ads_credentials.json')
+        # gc = pygsheets.authorize(service_file='credentials/google_ads_credentials.json')
 
         # Ouvrir le google sheet avec son ID
         sh = gc.open_by_key(spreadsheet_id)
@@ -37,3 +40,13 @@ def inject_data_to_sheet(df: pd.DataFrame):
 
     except Exception as e:
         print(f"Erreur lors de l'injection dans Google Sheet : {e}")    
+
+
+def authorize_from_env():
+    json_creds = os.environ.get("GOOGLE_SERVICE_ACCOUNT_JSON")
+    if not json_creds:
+        raise Exception("La variable d'environnement GOOGLE_SERVICE_ACCOUNT_JSON est manquante.")
+
+    creds_dict = json.loads(json_creds)
+    gc = pygsheets.authorize(service_account_credentials=creds_dict)
+    return gc

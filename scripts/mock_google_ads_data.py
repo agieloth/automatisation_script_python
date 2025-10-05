@@ -13,10 +13,10 @@ def extract_google_ads_data():
             "Campaign": "Campagne Test A",
             "Ad Group": "Ad Group 1",
             "Impressions": 1200,
-            "Clicks": 123,
+            "Clicks": 150,
             "Average CPC": 0.45,
-            "Conversions": 8,
-            "Conversion Value": 155.50,
+            "Conversions": 10,
+            "Conversion Value": 150.50,
             "ROAS": 2.5
         },
         {
@@ -27,7 +27,7 @@ def extract_google_ads_data():
             "Clicks": 80,
             "Average CPC": 0.65,
             "Conversions": 5,
-            "Conversion Value": 99.90,
+            "Conversion Value": 90.90,
             "ROAS": 1.9
         }
     ]
